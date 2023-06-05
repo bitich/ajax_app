@@ -1,13 +1,11 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all
-  end
-
-  def new
+    @posts = Post.order(id: "DESC")
   end
 
   def create
-    Post.create(content: params[:content])
+    post = Post.create(content: params[:content]) # 追記する
+    render json:{ post: post}
   end
 end
